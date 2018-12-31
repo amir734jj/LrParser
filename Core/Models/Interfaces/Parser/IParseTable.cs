@@ -1,6 +1,8 @@
 using System.Collections.Immutable;
+using Core.Models.Interfaces.Actions;
+using Core.Models.Interfaces.Nodes;
 
-namespace Core.Models.Interfaces
+namespace Core.Models.Interfaces.Parser
 {
     public interface IParseTable
     {

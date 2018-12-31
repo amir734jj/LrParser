@@ -1,7 +1,8 @@
-using System.Collections.Generic;
 using System.Collections.Immutable;
+using Core.Models.Interfaces.Actions;
+using Core.Models.Interfaces.Grammar;
 
-namespace Core.Models.Interfaces
+namespace Core.Models.Interfaces.Parser
 {
     public interface IState
     {

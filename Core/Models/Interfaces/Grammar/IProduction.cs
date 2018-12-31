@@ -1,7 +1,7 @@
-using System.Collections.Generic;
 using System.Collections.Immutable;
+using Core.Models.Interfaces.Nodes;
 
-namespace Core.Models.Interfaces
+namespace Core.Models.Interfaces.Grammar
 {
     public interface IProduction
     {

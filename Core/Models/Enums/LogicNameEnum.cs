@@ -1,7 +1,7 @@
 namespace Core.Models.Enums
 {
-    public class LogicNameEnum
+    public enum LogicNameEnum
     {
-        
+        Parser
     }
 }

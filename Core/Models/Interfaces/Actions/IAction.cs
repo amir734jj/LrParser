@@ -1,4 +1,4 @@
-namespace Core.Models.Interfaces
+namespace Core.Models.Interfaces.Actions
 {
     public interface IAction
     {

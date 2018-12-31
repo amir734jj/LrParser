@@ -4,6 +4,10 @@ using System.Linq;
 using Core.Interfaces.Logic;
 using Core.Models.Actions;
 using Core.Models.Interfaces;
+using Core.Models.Interfaces.Actions;
+using Core.Models.Interfaces.Grammar;
+using Core.Models.Interfaces.Nodes;
+using Core.Models.Interfaces.Parser;
 using Core.Models.Parser;
 using Core.Models.Pipeline;
 
@@ -17,7 +21,7 @@ namespace Core.Logic
         {
             _pipelinePayload = pipelinePayload;
         }
-        
+
         public ImmutableDictionary<IProduction, int> HandleClosure(INonTerminal nonTerminal)
         {
             var result = ImmutableDictionary<IProduction, int>.Empty;
@@ -71,7 +75,7 @@ namespace Core.Logic
             };
 
             states = states.Add(initialState);
-            
+
             IState currentState = initialState;
 
             do
@@ -79,11 +83,17 @@ namespace Core.Logic
                 foreach (var (key, value) in currentState.Rules)
                 {
                     if (key == rootProduction) continue;
-                    
+
                     // Add Reduce rule if production reached the end
                     if (key.Items.Length == value)
                     {
-                        currentState.Actions = currentState.Actions.Add(new Reduce {Production = key});
+                        var action = new Reduce
+                        {
+                            Production = key,
+                            NonTerminal = key.NonTerminal
+                        };
+
+                        currentState.Actions = currentState.Actions.Add(action);
                     }
 
                     foreach (var terminalOrNonTerminal in _pipelinePayload.AugmentedGrammar.TerminalsAndNonTerminals)
@@ -95,7 +105,7 @@ namespace Core.Logic
                                 states.FirstOrDefault(x => x != currentState && x.Rules.Any(y =>
                                 {
                                     var (production, index) = y;
-                                    
+
                                     var condition1 = production == key;
                                     var condition2 = value < production.Items.Length &&
                                                      production.Items[value] == terminalOrNonTerminal;
@@ -117,7 +127,7 @@ namespace Core.Logic
                             states = states.Add(nextState);
 
                             IAction action;
-                            
+
                             switch (terminalOrNonTerminal)
                             {
                                 case INonTerminal nonTerminal:
@@ -131,7 +141,8 @@ namespace Core.Logic
                                 case ITerminal terminal:
                                     action = new Shift
                                     {
-                                        Terminal = terminal
+                                        Terminal = terminal,
+                                        Destination = nextState
                                     };
                                     break;
                                 default:
@@ -152,16 +163,17 @@ namespace Core.Logic
             var finalState = new State
             {
                 Id = states.Count,
-                Actions = ImmutableList<IAction>.Empty,
+                Actions = ImmutableList<IAction>.Empty
+                    .Add(new Accept {Terminal = _pipelinePayload.AugmentedGrammar.Eof.Value}),
                 Rules = ImmutableDictionary<IProduction, int>.Empty
                     .Add(rootProduction, 1)
             };
 
             initialState.Actions = initialState.Actions
-                .Add(new Shift { Terminal = _pipelinePayload.AugmentedGrammar.Eof.Value });
+                .Add(new Shift {Terminal = _pipelinePayload.AugmentedGrammar.Eof.Value});
 
             states = states.Add(finalState);
-            
+
             return states;
         }
     }

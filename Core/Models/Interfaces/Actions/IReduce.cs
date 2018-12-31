@@ -1,4 +1,7 @@
-namespace Core.Models.Interfaces
+using Core.Models.Interfaces.Grammar;
+using Core.Models.Interfaces.Nodes;
+
+namespace Core.Models.Interfaces.Actions
 {
     public interface IReduce : IAction
     {

@@ -1,6 +1,5 @@
 using System;
 using Core.Logic;
-using Core.Models.Interfaces;
 using Core.Models.Pipeline;
 using Tamarack.Pipeline;
 

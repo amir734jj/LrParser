@@ -1,4 +1,4 @@
-namespace Core.Models.Interfaces
+namespace Core.Models.Interfaces.Nodes
 {
     public interface ITerminal : ITerminalOrNonTerminal
     {

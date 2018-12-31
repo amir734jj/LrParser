@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlrParser", "SlrParser\SlrParser.csproj", "{5E98FE82-F133-4705-B32F-869C5A83A36B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{5E98FE82-F133-4705-B32F-869C5A83A36B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Tests", "Core.Tests\Core.Tests.csproj", "{5F3CC46A-E2A8-40CD-B184-FE2AC9A74CB3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -12,5 +14,9 @@ Global
 		{5E98FE82-F133-4705-B32F-869C5A83A36B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5E98FE82-F133-4705-B32F-869C5A83A36B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E98FE82-F133-4705-B32F-869C5A83A36B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F3CC46A-E2A8-40CD-B184-FE2AC9A74CB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F3CC46A-E2A8-40CD-B184-FE2AC9A74CB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F3CC46A-E2A8-40CD-B184-FE2AC9A74CB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F3CC46A-E2A8-40CD-B184-FE2AC9A74CB3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

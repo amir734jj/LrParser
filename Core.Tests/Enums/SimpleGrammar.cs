@@ -1,18 +1,17 @@
 namespace Core.Tests.Enums
 {
-    public static class NumericEnums
+    public static class SimpleGrammar
     {
         public enum NonTerminals
         {
-            Root,
-            E
+            E,
+            T
         }
 
         public enum Terminals
         {
-            Number,
+            Id,
             Plus,
-            Multiply,
             Epsilon,
             Eof
         }
